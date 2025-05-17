@@ -33,6 +33,10 @@ var ErrPlayerNotFound = errors.New("player not found")
 func main() {
 	quiet := false
 
+	serverAddress := os.Getenv("THEISLE_RCON_ADDRESS")
+	rconPassword := os.Getenv("THEISLE_RCON_PASSWORD")
+
+	argID := 0
 	for _, arg := range os.Args[1:] {
 		switch arg {
 		case "-q":
@@ -43,12 +47,21 @@ func main() {
 		case "--help":
 			printHelp(os.Args[0])
 			return
+		default:
+			switch argID {
+			case 0:
+				serverAddress = arg
+			case 1:
+				rconPassword = arg
+			default:
+				printHelp(os.Args[0])
+				os.Exit(1)
+			}
+			argID += 1
 		}
 	}
 
 	var err error
-	serverAddress := os.Getenv("THEISLE_RCON_ADDRESS")
-	rconPassword := os.Getenv("THEISLE_RCON_PASSWORD")
 
 	for serverAddress == "" {
 		serverAddress, err = readline.Line("Server address: ")
@@ -156,11 +169,15 @@ Repl:
 }
 
 func printHelp(programName string) {
-	fmt.Printf("Usage: %s [-h] [-q]\n", programName)
+	fmt.Printf("Usage: %s [-h] [-q] [ ADDRESS [PASSWORD] ]\n", programName)
 	fmt.Println()
 	fmt.Println("Options:")
 	fmt.Println("    -h  Show this message")
 	fmt.Println("    -q  Print only command outputs")
+	fmt.Println()
+	fmt.Println("Arguments:")
+	fmt.Println("    ADDRESS   Server address and port (optional)")
+	fmt.Println("    PASSWORD  RCON password (optional)")
 }
 
 // ResolvePlayerName turns a name into an ID.
