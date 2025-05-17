@@ -1,4 +1,4 @@
-module github.com/butt4cak3/theisleconsole
+module github.com/butt4cak3/pteroprompt
 
 go 1.24.3
 

@@ -1,18 +1,20 @@
-# The Isle RCON Console
+# PteroPrompt
 
-This is a terminal application (i.e. no graphical interface) that lets you send commands to your The Isle Evrima server.
+PteroPrompt is a tool that lets you send commands to your The Isle Evrima server.
+
+This is a terminal application (i.e. no graphical interface).
 
 ## Connecting to your server
 
-To run the program, simply run `./theisleconsole` on Linux or `.\theisleconsole.exe` on Windows. There will be a prompt that asks you for your server's RCON address and password.
+To run the program, simply run `./pteroprompt` on Linux or `.\pteroprompt.exe` on Windows. There will be a prompt that asks you for your server's RCON address and password.
 
 Alternatively, you can pass the address, or both address and password as command line parameters like so:
 
 ```sh
-./theisleconsole 127.0.0.1:8888 YourSecurePasswordHere
+./pteroprompt 127.0.0.1:8888 YourSecurePasswordHere
 ```
 
-As a third option, you can set the environment variables `THEISLE_RCON_ADDRESS` and/or `THEISLE_RCON_PASSWORD` before you start the program and it will use those values instead.
+As a third option, you can set the environment variables `PTEROPROMPT_RCON_ADDRESS` and/or `PTEROPROMPT_RCON_PASSWORD` before you start the program and it will use those values instead.
 
 ## Usage
 

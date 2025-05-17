@@ -33,8 +33,8 @@ var ErrPlayerNotFound = errors.New("player not found")
 func main() {
 	quiet := false
 
-	serverAddress := os.Getenv("THEISLE_RCON_ADDRESS")
-	rconPassword := os.Getenv("THEISLE_RCON_PASSWORD")
+	serverAddress := os.Getenv("PTEROPROMPT_RCON_ADDRESS")
+	rconPassword := os.Getenv("PTEROPROMPT_RCON_PASSWORD")
 
 	argID := 0
 	for _, arg := range os.Args[1:] {
