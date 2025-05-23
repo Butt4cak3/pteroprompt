@@ -123,7 +123,7 @@ func infoCommand(client *rcon.Client, args []string) error {
 			p := message.NewPrinter(message.MatchLanguage("en"))
 			fmt.Printf("Player %s\n", player.Name)
 			fmt.Printf("    ID:       %s\n", player.ID)
-			fmt.Printf("    Class:    %s\n", player.Class.Name())
+			fmt.Printf("    Class:    %s\n", player.DinoClass.Name())
 			fmt.Printf("    Growth:   %d%%, Health: %d%%, Stamina: %d%%, Hunger: %d%%, Thirst: %d%%\n", player.Growth, player.Health, player.Stamina, player.Hunger, player.Thirst)
 			p.Printf("    Location: %.3f, %.3f, %.3f\n", player.Location.Y, player.Location.X, player.Location.Z)
 			return nil
@@ -152,7 +152,7 @@ func classesCommand(client *rcon.Client, args []string) error {
 		}
 		return nil
 	case "allow":
-		var classes []rcon.Class
+		var classes []rcon.DinoClass
 		if len(args) == 0 {
 			fmt.Println("No classes provided.")
 			fmt.Println("Type \"classes list\" to get a list of all available classes or \"classes allow all\" to allow all classes at the same time.")
@@ -161,13 +161,13 @@ func classesCommand(client *rcon.Client, args []string) error {
 		if len(args) == 1 && args[0] == "all" {
 			classes = rcon.AllClasses[:]
 		} else {
-			classes = make([]rcon.Class, len(args))
+			classes = make([]rcon.DinoClass, len(args))
 			for i, arg := range args {
 				if !rcon.IsClass(arg) {
 					fmt.Printf("\"%s\" is not a class. Type \"classes list\" to get a list of all classes.", arg)
 					return nil
 				}
-				classes[i] = rcon.Class(arg)
+				classes[i] = rcon.DinoClass(arg)
 			}
 		}
 		return client.UpdatePlayables(classes)
